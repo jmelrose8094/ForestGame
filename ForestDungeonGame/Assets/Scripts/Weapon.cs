@@ -17,9 +17,4 @@ public class Weapon : MonoBehaviour
         damage = d;
         coolDown = c;
     }
-
-    public string ToString()
-    {
-        return "This is a weapon";
-    }
 }

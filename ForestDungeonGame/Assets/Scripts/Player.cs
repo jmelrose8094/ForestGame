@@ -6,7 +6,7 @@ public class Player : Character
 {
     public int maxMana, mana;
 
-    public Player()
+    public Player() : base()
     {
         maxMana = 5;
         mana = 5;
