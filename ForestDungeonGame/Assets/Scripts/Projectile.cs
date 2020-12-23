@@ -19,16 +19,16 @@ public class Projectile : MonoBehaviour
         deathTimer = dt;
     }
 
+    void Start()
+    {
+        StartCoroutine(SelfDestruct(deathTimer));
+    }
+
     public int GetDamage()
     {
         return damage;
     }
 
-    void Start()
-    {
-        StartCoroutine(SelfDestruct(deathTimer));
-    }
-    
     IEnumerator SelfDestruct(float dt)
     {
         yield return new WaitForSeconds(dt);
