@@ -6,7 +6,7 @@ using CodeMonkey.Utils;
 
 public class AimWeapon : MonoBehaviour
 {
-    public event EventHandler<OnShootArgs> OnShoot;
+    //public event EventHandler<OnShootArgs> OnShoot;
     public class OnShootEventArgs : EventArgs
     {
         public Vector3 projectileSpawnPoint;

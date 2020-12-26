@@ -34,4 +34,10 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSeconds(dt);
         Destroy(gameObject);
     }
+
+
+    public void FireProjectille()
+    {
+        //TODO finish this
+    }
 }
