@@ -2,7 +2,9 @@
 ForestDungeonGame/Temp/UnityLockfile
 ForestDungeonGame/Library/SourceAssetDB
 ForestDungeonGame/Library/ArtifactDB
-!/[Ll]ibrary/*.asset
+!/Library/*.asset
 /[Ll]ibrary/
 /[Tt]emp/
 .vs/
+/ForestDungeonGame/Library/
+!ForestDungeonGame/Library/*.asset

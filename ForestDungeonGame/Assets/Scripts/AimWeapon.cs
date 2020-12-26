@@ -24,6 +24,8 @@ public class AimWeapon : MonoBehaviour
 
     }
 
+    //TODO Remove this comment
+
     private void HandleAiming()
     {
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
