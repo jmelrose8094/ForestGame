@@ -1,2 +1,8 @@
 
 ForestDungeonGame/Temp/UnityLockfile
+ForestDungeonGame/Library/SourceAssetDB
+ForestDungeonGame/Library/ArtifactDB
+!/[Ll]ibrary/*.asset
+/[Ll]ibrary/
+/[Tt]emp/
+.vs/

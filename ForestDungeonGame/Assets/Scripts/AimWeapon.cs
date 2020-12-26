@@ -10,7 +10,6 @@ public class AimWeapon : MonoBehaviour
     public class OnShootEventArgs : EventArgs
     {
         public Vector3 projectileSpawnPoint;
-        public Vector3 shootPo
     }
     public Transform wepTransform;
 
