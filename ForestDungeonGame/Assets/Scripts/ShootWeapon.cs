@@ -11,6 +11,8 @@ public class ShootWeapon : MonoBehaviour
     // Start is called before the first frame update
     public Transform wepTransform;
 
+    public Weapon weapon;
+
     private bool canShoot = true;
     void Start()
     {
@@ -27,32 +29,23 @@ public class ShootWeapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && canShoot)
         {
-            Projectille p = new Projectille();
+
+            StartCoroutine(CoolDownAwaiter(weapon.GetCoolDown()));
+            //Projectille p = new Projectille();
 
 
         }
     }
 
-    IEnumerator SelfDestruct(float dt)
-    {
-        yield return new WaitForSeconds(dt);
-        Destroy(gameObject);
-    }
-
     /**
-     *  void Start()
+     * This Function will block the canShoot as false until
+     * the needed time has transpired
+     **/
+    IEnumerator CoolDownAwaiter(float dt)
     {
-        StartCoroutine(SelfDestruct(deathTimer));
-    }
-
-    public int GetDamage()
-    {
-        return damage;
-    }
-
-    IEnumerator SelfDestruct(float dt)
-    {
+        canShoot = false;
         yield return new WaitForSeconds(dt);
-        Destroy(gameObject);
-    }*/
+        canShoot = true;
+        
+    }
 }

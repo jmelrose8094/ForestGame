@@ -17,4 +17,14 @@ public class Weapon : MonoBehaviour
         damage = d;
         coolDown = c;
     }
+
+    public float GetCoolDown()
+    {
+        return this.coolDown;
+    }
+
+    public int GetDamage()
+    {
+        return this.damage;
+    }
 }
