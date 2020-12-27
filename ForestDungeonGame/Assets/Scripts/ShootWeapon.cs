@@ -9,14 +9,20 @@ using UnityEngine;
 public class ShootWeapon : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Transform wepTransform;
-
+    public Transform spawnPoint;
     public Weapon weapon;
-
+    public GameObject Projectile;
     private bool canShoot = true;
+
     void Start()
     {
         
+    }
+
+    private void Awake()
+    {
+        spawnPoint = GameObject.Find("LaunchPoint").transform;
+        Projectile = GameObject.Find("Projectile");
     }
 
     // Update is called once per frame
@@ -27,11 +33,15 @@ public class ShootWeapon : MonoBehaviour
 
     private void HandleShooting()
     {
+
         if (Input.GetMouseButtonDown(0) && canShoot)
         {
 
             StartCoroutine(CoolDownAwaiter(weapon.GetCoolDown()));
-            //Projectille p = new Projectille();
+            GameObject temp = Instantiate(Projectile) as GameObject;
+            temp.transform.position = spawnPoint.position;
+            temp.transform.rotation = spawnPoint.rotation;
+            Projectile.GetComponent<Projectile>().Initilize(weapon.GetDamage(), 1f, 1f);
 
 
         }
@@ -41,10 +51,10 @@ public class ShootWeapon : MonoBehaviour
      * This Function will block the canShoot as false until
      * the needed time has transpired
      **/
-    IEnumerator CoolDownAwaiter(float dt)
+    IEnumerator CoolDownAwaiter(float t)
     {
         canShoot = false;
-        yield return new WaitForSeconds(dt);
+        yield return new WaitForSeconds(t);
         canShoot = true;
         
     }
