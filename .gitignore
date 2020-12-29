@@ -1,11 +1,33 @@
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Library/
 
-ForestDungeonGame/Temp/UnityLockfile
-ForestDungeonGame/Library/SourceAssetDB
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 ForestDungeonGame/Library/ArtifactDB
-!/Library/*.asset
-/[Ll]ibrary/
-/[Tt]emp/
-.vs/
-/ForestDungeonGame/Library/
-!ForestDungeonGame/Library/*.asset
-ForestDungeonGame/Temp/UnityTempFile-5219c4b3af789c6468d9594d72537946
+ForestDungeonGame/Library/SourceAssetDB
