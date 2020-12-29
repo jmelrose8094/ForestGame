@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int damage;
-    public float speed, deathTimer;
+    public int damage = 0;
+    public float speed = 0f, deathTimer = 20f;
 
 
     private Projectile()
@@ -21,7 +21,20 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SelfDestruct(deathTimer));
+        //StartCoroutine(SelfDestruct(deathTimer));
+    }
+
+    void FixedUpdate()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+        print(speed);
+    }
+
+    public void Initilize(int d, float s, float dt)
+    {
+        damage = d;
+        speed = s;
+        deathTimer = dt;
     }
 
     public int GetDamage()
