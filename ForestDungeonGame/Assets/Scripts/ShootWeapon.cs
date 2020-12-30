@@ -22,7 +22,6 @@ public class ShootWeapon : MonoBehaviour
     private void Awake()
     {
         spawnPoint = GameObject.Find("LaunchPoint").transform;
-        Projectile = GameObject.Find("Projectile");
     }
 
     // Update is called once per frame
@@ -41,7 +40,11 @@ public class ShootWeapon : MonoBehaviour
             GameObject temp = Instantiate(Projectile) as GameObject;
             temp.transform.position = spawnPoint.position;
             temp.transform.rotation = spawnPoint.rotation;
+            
+            //GameObject test = GameObject.FindGameObjectsWithTag("Projectile");
+            //test.SetActive(true);
             Projectile.GetComponent<Projectile>().Initilize(weapon.GetDamage(), 1f, 1f);
+            
 
 
         }

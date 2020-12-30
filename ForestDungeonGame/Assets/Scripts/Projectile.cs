@@ -5,7 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public int damage = 0;
-    public float speed = 0f, deathTimer = 20f;
+    public float speed = 5f, deathTimer = 3f;
+    //public GameObject Projectile;
 
 
     private Projectile()
@@ -21,14 +22,14 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        //StartCoroutine(SelfDestruct(deathTimer));
+        StartCoroutine(SelfDestruct(deathTimer));
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-        print(speed);
+        transform.Translate(0, -Time.deltaTime *10f, 0);
     }
+
 
     public void Initilize(int d, float s, float dt)
     {

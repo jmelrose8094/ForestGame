@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1048088778132858230}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b9d5d7e40d24349a6673969973e4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  speed: 0
-  deathTimer: 0
+  damage: 1
+  speed: 1
+  deathTimer: 1
 --- !u!58 &1048088778132858230
 CircleCollider2D:
   m_ObjectHideFlags: 0
