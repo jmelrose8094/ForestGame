@@ -38,6 +38,17 @@ public class Projectile : MonoBehaviour
         deathTimer = dt;
     }
 
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Hit");
+        if (other.gameObject.name == "Enemy")
+        {
+            other.gameObject.GetComponent<Enemy>().SubtractFromHealth(damage);
+        }
+
+        Destroy(this.gameObject);
+    }
+
     public int GetDamage()
     {
         return damage;
