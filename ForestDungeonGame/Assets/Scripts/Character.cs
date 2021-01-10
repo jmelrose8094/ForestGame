@@ -58,4 +58,5 @@ public class Character : MonoBehaviour
     {
         weapons.Remove(w);
     }
+
 }

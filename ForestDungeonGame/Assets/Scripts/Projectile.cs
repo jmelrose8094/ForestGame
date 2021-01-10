@@ -46,8 +46,11 @@ public class Projectile : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().SubtractFromHealth(damage);
         }
-
-        Destroy(this.gameObject);
+        if(other.gameObject.name != "Player")
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 
     public int GetDamage()
