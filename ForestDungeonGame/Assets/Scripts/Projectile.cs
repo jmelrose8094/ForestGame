@@ -41,7 +41,8 @@ public class Projectile : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Hit");
-        if (other.gameObject.name == "Enemy")
+
+        if (other.gameObject.tag=="Breakable")
         {
             other.gameObject.GetComponent<Enemy>().SubtractFromHealth(damage);
         }
