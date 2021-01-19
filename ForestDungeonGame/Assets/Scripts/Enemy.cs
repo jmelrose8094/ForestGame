@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         return startingPosition + UtilsClass.GetRandomDir() * Random.Range(10f, 70f);
     }
 
-    private vid Update()
+    private void Update()
     {
         
         switch (state)
@@ -78,27 +78,29 @@ public class Enemy : MonoBehaviour
     }
     private void RunChaseTarget()
     {
-        pathfindingMovement.MoveToTimer(Player.Instance.GetPosition());
+       // pathfindingMovement.MoveToTimer(Player.Instance.GetPosition());
         
     }
 
     private void FindTarget()
     {
-        float targetRnage = 50f;
+        /*float targetRnage = 50f;
         if (Vector3.Distance(transform.position, Player.Instance.GetPosition()) < targetRange)
         {
             state = State.ChaseTarget();
         }
+		*/
     }
     private void RunRoaming()
     {
-        pathfindingMovement.MoveTo(roamPosition);
+        /*pathfindingMovement.MoveTo(roamPosition);
         float reachedPositionDistance = 1f;
         if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance)
         {
             roamPosition = GetRoamingPosition();
         }
         FindTarget();
+		*/
     }
 
     public void SubtractFromHealth(int dmg)
