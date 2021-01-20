@@ -6,7 +6,7 @@ public class Player : Character
 {
     public int maxMana, mana;
 
-    public static Player Instance { get; private set; }
+    //public static Player Instance { get; private set; }
     public Player() : base()
     {
         maxMana = 5;
