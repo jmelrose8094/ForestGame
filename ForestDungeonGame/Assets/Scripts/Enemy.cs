@@ -8,12 +8,11 @@ public class Enemy : MonoBehaviour
 {
     public int health, damage;
     public float moveSpeed;
-    
+    public RectTransform Player;
+    private Rigidbody2D rb;
+    private Vector2 movement;
 
-    private Vector3 startingPosition;
-    private Vector3 roamPosition;
-
-    //private EnemyPathfindingMovement pathfindingMovement;
+   
     private enum State
     {
         Roaming,
@@ -31,19 +30,16 @@ public class Enemy : MonoBehaviour
         health = h;
         damage = d;
         moveSpeed = s;
-        state = State.Locked;
+        state = State.ChaseTarget;
     }
 
     private void Start()
     {
-        startingPosition = transform.position;
-        roamPosition = GetRoamingPosition();
+        rb = this.GetComponent<Rigidbody2D>();
+        state = State.ChaseTarget;
+        Player = GameObject.Find("Player").GetComponent<RectTransform>();
     }
 
-    private Vector3 GetRoamingPosition()
-    {
-        return startingPosition + UtilsClass.GetRandomDir() * Random.Range(10f, 70f);
-    }
 
     private void Update()
     {
@@ -63,6 +59,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        MoveCharacter(movement);
+    }
+
     public int GetHealth()
     {
         return health;
@@ -78,29 +79,31 @@ public class Enemy : MonoBehaviour
     }
     private void RunChaseTarget()
     {
-       // pathfindingMovement.MoveToTimer(Player.Instance.GetPosition());
+        Vector3 direction = Player.position - transform.position;
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //rb.rotation = angle;
+        direction.Normalize();
+        movement = direction;
+
+       
         
     }
 
+    private void MoveCharacter(Vector2 direction)
+    {
+        rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+    }
     private void FindTarget()
     {
         /*float targetRnage = 50f;
         if (Vector3.Distance(transform.position, Player.Instance.GetPosition()) < targetRange)
         {
             state = State.ChaseTarget();
-        }
-		*/
+        }*/
     }
     private void RunRoaming()
     {
-        /*pathfindingMovement.MoveTo(roamPosition);
-        float reachedPositionDistance = 1f;
-        if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance)
-        {
-            roamPosition = GetRoamingPosition();
-        }
-        FindTarget();
-		*/
+        
     }
 
     public void SubtractFromHealth(int dmg)
