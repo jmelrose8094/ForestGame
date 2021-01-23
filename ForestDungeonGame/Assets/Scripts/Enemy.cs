@@ -11,13 +11,15 @@ public class Enemy : MonoBehaviour
     public RectTransform Player;
     private Rigidbody2D rb;
     private Vector2 movement;
+    private float targetRange = 5;
 
-   
+
     private enum State
     {
         Roaming,
         ChaseTarget,
-        Locked
+        Locked,
+        Shoot
     }
     private State state = State.Locked;
 
@@ -43,7 +45,15 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        
+
+        if (targetRange >= Vector3.Distance(Player.position, transform.position))
+        {
+            state = State.Shoot;
+        }
+        else
+        {
+            state = State.ChaseTarget;
+        }
         switch (state)
         {
             case State.Locked:
@@ -55,13 +65,22 @@ public class Enemy : MonoBehaviour
             case State.Roaming:
                 RunRoaming();
                 break;
+            case State.Shoot:
+                ShootPlayer();
+                break;
 
         }
     }
 
     private void FixedUpdate()
     {
-        MoveCharacter(movement);
+        switch (state)
+        {
+            case State.ChaseTarget:
+                MoveCharacter(movement);
+                break;
+        }
+        //MoveCharacter(movement);
     }
 
     public int GetHealth()
@@ -85,8 +104,7 @@ public class Enemy : MonoBehaviour
         direction.Normalize();
         movement = direction;
 
-       
-        
+        MoveCharacter(movement);
     }
 
     private void MoveCharacter(Vector2 direction)
@@ -104,6 +122,10 @@ public class Enemy : MonoBehaviour
     private void RunRoaming()
     {
         
+    }
+    private void ShootPlayer()
+    {
+
     }
 
     public void SubtractFromHealth(int dmg)
