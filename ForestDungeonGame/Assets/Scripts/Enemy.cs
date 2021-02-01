@@ -8,10 +8,15 @@ public class Enemy : MonoBehaviour
 {
     public int health, damage;
     public float moveSpeed;
-    public RectTransform Player;
+    public RectTransform player;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float targetRange = 5;
+    public Transform wepTransform;
+    public Transform spawnPoint;
+    public Weapon weapon;
+    public GameObject Projectile;
+    private bool canShoot = true;
 
 
     private enum State
@@ -39,14 +44,16 @@ public class Enemy : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         state = State.ChaseTarget;
-        Player = GameObject.Find("Player").GetComponent<RectTransform>();
+        player = GameObject.Find("Player").GetComponent<RectTransform>();
+        wepTransform = transform.Find("EnemyWeapon");
+        spawnPoint = GameObject.Find("EnemyLaunchPoint").transform;
     }
 
 
     private void Update()
     {
-
-        if (targetRange >= Vector3.Distance(Player.position, transform.position))
+        HandleAiming();
+        if (targetRange >= Vector3.Distance(player.position, transform.position))
         {
             state = State.Shoot;
         }
@@ -98,7 +105,7 @@ public class Enemy : MonoBehaviour
     }
     private void RunChaseTarget()
     {
-        Vector3 direction = Player.position - transform.position;
+        Vector3 direction = player.position - transform.position;
         //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         //rb.rotation = angle;
         direction.Normalize();
@@ -114,7 +121,7 @@ public class Enemy : MonoBehaviour
     private void FindTarget()
     {
         /*float targetRnage = 50f;
-        if (Vector3.Distance(transform.position, Player.Instance.GetPosition()) < targetRange)
+        if (Vector3.Distance(transform.position, player.Instance.GetPosition()) < targetRange)
         {
             state = State.ChaseTarget();
         }*/
@@ -125,7 +132,7 @@ public class Enemy : MonoBehaviour
     }
     private void ShootPlayer()
     {
-
+        HandleShooting();
     }
 
     public void SubtractFromHealth(int dmg)
@@ -136,5 +143,36 @@ public class Enemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+    private void HandleAiming()
+    {
+        Vector3 playerPosition = player.position;
+
+        Vector3 aimDirection = (playerPosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        wepTransform.eulerAngles = new Vector3(0, 0, angle);
+    }
+
+    public void HandleShooting()
+    {
+        if (canShoot)
+        {
+
+            StartCoroutine(CoolDownAwaiter(weapon.GetCoolDown()));
+            GameObject temp = Instantiate(Projectile) as GameObject;
+            temp.transform.position = spawnPoint.position;
+            temp.transform.rotation = spawnPoint.rotation;
+
+            //GameObject test = GameObject.FindGameObjectsWithTag("Projectile");
+            //test.SetActive(true);
+            Projectile.GetComponent<Projectile>().Initilize(weapon.GetDamage(), 1f, 1f, false);
+        }
+    }
+    IEnumerator CoolDownAwaiter(float t)
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(t);
+        canShoot = true;
+
     }
 }

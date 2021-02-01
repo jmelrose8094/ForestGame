@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public int damage = 0;
     public float speed = 5f, deathTimer = 3f;
+    public bool fromPlayer;
     //public GameObject Projectile;
 
 
@@ -13,11 +14,12 @@ public class Projectile : MonoBehaviour
     {
     }
 
-    public Projectile(int d, float s, float dt)
+    public Projectile(int d, float s, float dt, bool fp)
     {
         damage = d;
         speed = s;
         deathTimer = dt;
+        fromPlayer = fp;
     }
 
     void Start()
@@ -31,22 +33,34 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void Initilize(int d, float s, float dt)
+    public void Initilize(int d, float s, float dt, bool fp)
     {
         damage = d;
         speed = s;
         deathTimer = dt;
+        fromPlayer = fp;
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Hit");
 
-        if (other.gameObject.tag=="Breakable")
+        if  (other.gameObject.tag == "Enemy" && fromPlayer == true)
         {
             other.gameObject.GetComponent<Enemy>().SubtractFromHealth(damage);
+            Destroy(this.gameObject);
         }
-        if(other.gameObject.name != "Player")
+        else if(other.gameObject.tag == "Breakable")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+        else if(other.gameObject.tag == "Player" && fromPlayer == false)
+        {
+            other.gameObject.GetComponent<Player>().SubtractFromHealth(damage);
+            Destroy(this.gameObject);
+        }
+        else if(other.gameObject.name != "Player" && fromPlayer == true)
         {
             Destroy(this.gameObject);
         }

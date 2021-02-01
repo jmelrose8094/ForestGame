@@ -43,10 +43,7 @@ public class ShootWeapon : MonoBehaviour
             
             //GameObject test = GameObject.FindGameObjectsWithTag("Projectile");
             //test.SetActive(true);
-            Projectile.GetComponent<Projectile>().Initilize(weapon.GetDamage(), 1f, 1f);
-            
-
-
+            Projectile.GetComponent<Projectile>().Initilize(weapon.GetDamage(), 1f, 1f, true);
         }
     }
 

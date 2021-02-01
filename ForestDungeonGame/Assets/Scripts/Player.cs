@@ -32,4 +32,13 @@ public class Player : Character
     {
         maxMana = m;
     }
+    public void SubtractFromHealth(int dmg)
+    {
+        health = health - dmg;
+
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
