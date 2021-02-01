@@ -159,13 +159,13 @@ public class Enemy : MonoBehaviour
         {
 
             StartCoroutine(CoolDownAwaiter(weapon.GetCoolDown()));
-            GameObject temp = Instantiate(Projectile) as GameObject;
+            GameObject temp = Instantiate(EnemyProjectile) as GameObject;
             temp.transform.position = spawnPoint.position;
             temp.transform.rotation = spawnPoint.rotation;
 
             //GameObject test = GameObject.FindGameObjectsWithTag("Projectile");
             //test.SetActive(true);
-            Projectile.GetComponent<Projectile>().Initilize(weapon.GetDamage(), 1f, 1f, false);
+            Projectile.GetComponent<EnemyProjectile>().Initilize(weapon.GetDamage(), 1f, 1f);
         }
     }
     IEnumerator CoolDownAwaiter(float t)

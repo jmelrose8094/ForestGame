@@ -64098,7 +64098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1079424187}
   weapon: {fileID: 140632035}
-  Projectile: {fileID: 1048088778132858226, guid: 1ecd7a1c52c2eb84c8652ab79d14bc3c, type: 3}
+  Projectile: {fileID: 8477436741444778348, guid: 4bc5622434c7b3b4cbf917cca3288ea5, type: 3}
 --- !u!60 &475163101
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -67761,7 +67761,7 @@ MonoBehaviour:
   wepTransform: {fileID: 240278397}
   spawnPoint: {fileID: 857929369}
   weapon: {fileID: 240278398}
-  Projectile: {fileID: 1048088778132858226, guid: 1ecd7a1c52c2eb84c8652ab79d14bc3c, type: 3}
+  Projectile: {fileID: 2410441156424837146, guid: 5c68a6968a51f9f43a23c2169d4ac749, type: 3}
 --- !u!70 &945494615
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -67866,7 +67866,7 @@ MonoBehaviour:
   playerTransform: {fileID: 475163099}
   spawnPoint: {fileID: 857929369}
   weapon: {fileID: 240278398}
-  Projectile: {fileID: 1048088778132858226, guid: 1ecd7a1c52c2eb84c8652ab79d14bc3c, type: 3}
+  Projectile: {fileID: 2410441156424837146, guid: 5c68a6968a51f9f43a23c2169d4ac749, type: 3}
 --- !u!1 &968570615
 GameObject:
   m_ObjectHideFlags: 0

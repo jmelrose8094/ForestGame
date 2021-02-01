@@ -6,20 +6,18 @@ public class Projectile : MonoBehaviour
 {
     public int damage = 0;
     public float speed = 5f, deathTimer = 3f;
-    public bool fromPlayer;
     //public GameObject Projectile;
 
 
-    private Projectile()
+    public Projectile()
     {
     }
 
-    public Projectile(int d, float s, float dt, bool fp)
+    public Projectile(int d, float s, float dt)
     {
         damage = d;
         speed = s;
         deathTimer = dt;
-        fromPlayer = fp;
     }
 
     void Start()
@@ -33,17 +31,16 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void Initilize(int d, float s, float dt, bool fp)
+    public void Initilize(int d, float s, float dt)
     {
         damage = d;
         speed = s;
         deathTimer = dt;
-        fromPlayer = fp;
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit");
+        /*Debug.Log("Hit");
 
         if  (other.gameObject.tag == "Enemy" && fromPlayer == true)
         {
@@ -63,7 +60,7 @@ public class Projectile : MonoBehaviour
         else if(other.gameObject.name != "Player" && fromPlayer == true)
         {
             Destroy(this.gameObject);
-        }
+        }*/
         
     }
 
